@@ -50,7 +50,6 @@ export class FormulaireComponent implements OnInit {
   submit(music: Music) { //Formulaire
     music.picture = this.musicModel.picture;
     const date =  new Date(music.date!).getFullYear().toString();
-    console.log(date);
     music.date = date;
     this.submitEvent$.emit(music);
   }
