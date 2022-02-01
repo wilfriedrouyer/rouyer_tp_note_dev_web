@@ -1,19 +1,27 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {MatChipInputEvent} from "@angular/material/chips";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {Music} from "../service/list-music.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Music } from '../service/list-music.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'formulaire',
   templateUrl: './formulaire.component.html',
-  styleUrls: ['./formulaire.component.scss']
+  styleUrls: ['./formulaire.component.scss'],
 })
 export class FormulaireComponent implements OnInit {
   form: FormGroup;
-  title: string;
+  title?: string;
   @Input() musicModel: Music;
-  @ViewChild("fileInput") fileInput!: ElementRef;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   @Output('cancel') cancelEvent$: EventEmitter<any>;
   @Output('submit') submitEvent$: EventEmitter<any>;
@@ -25,9 +33,9 @@ export class FormulaireComponent implements OnInit {
     this.cancelEvent$ = new EventEmitter();
     this.form = FormulaireComponent.buildForm();
     this.musicModel = {
-      styles: []
+      styles: [],
     };
-    this.title = "➕ Créer une musique";
+
   }
 
   ngOnInit() {
@@ -42,19 +50,21 @@ export class FormulaireComponent implements OnInit {
       date: this.musicModel.date?.substring(0, 4),
       picture: this.musicModel.picture,
     });
+    this.title = '➕ Créer une musique';
+    if (this.musicModel.id !== undefined) this.title = '➕ Modifier une musique';
   }
 
   cancel() {
     this.cancelEvent$.emit();
   }
 
-  submit(music: Music) { //Formulaire
+  submit(music: Music) {
+    //Formulaire
     music.picture = this.musicModel.picture;
-    const date =  new Date(music.date!).getFullYear().toString();
+    const date = new Date(music.date!).getFullYear().toString();
     music.date = date;
     this.submitEvent$.emit(music);
   }
-
 
   addChipset(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -69,16 +79,16 @@ export class FormulaireComponent implements OnInit {
     this.musicModel.styles!.splice(index, 1);
   }
 
-  onFileSelected(event:Event | null) {
+  onFileSelected(event: Event | null) {
     const files = (<HTMLInputElement>event?.currentTarget).files;
-    const file:File | null = files!.item(0);
+    const file: File | null = files!.item(0);
 
     if (file) {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (_event) => {
-          this.musicModel.picture = reader.result;
-        }
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.musicModel.picture = reader.result;
+      };
     }
   }
 
@@ -91,7 +101,10 @@ export class FormulaireComponent implements OnInit {
   private static buildForm(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
-      title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      title: new FormControl(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(2)])
+      ),
       description: new FormControl(''),
       album: new FormControl('', Validators.required),
       artist: new FormControl(''),
@@ -101,7 +114,4 @@ export class FormulaireComponent implements OnInit {
       picture: new FormControl(''),
     });
   }
-
-
-
 }

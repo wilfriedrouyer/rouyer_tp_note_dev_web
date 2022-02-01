@@ -1,5 +1,5 @@
 <mat-card class="mat-whiteframe-2dp">
-  <mat-card-title> <span>➕ Créer une musique</span> </mat-card-title>
+  <mat-card-title> <span>{{title}}</span> </mat-card-title>
 
   <mat-card-content>
     <form novalidate [formGroup]="form">
@@ -31,7 +31,7 @@
           <mat-label>Année de sortie</mat-label>
           <input matInput placeholder="Ex: 1998" style="width:100%" name="date" formControlName="date" required />
           <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['required']"><br />L'année de sortie est obligatoire</mat-error>
-          <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['minlength']"><br />Le nom doit avoir au moins 2 caractères </mat-error>
+          <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['minlength']"><br />L'année doit être valide </mat-error>
         </mat-form-field>
       </p>
 
@@ -40,6 +40,7 @@
           <mat-label>Album</mat-label>
           <input matInput placeholder="Highway to Hell" style="width:100%" name="album" formControlName="album" required />
           <mat-error *ngIf="form.get('album')!.dirty && form.get('album')!.errors?.['required']"><br />L'album est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('album')!.dirty && form.get('album')!.errors?.['minlength']"><br />L'album doit avoir au moins 2 caractères </mat-error>
         </mat-form-field>
       </p>
 
