@@ -6,14 +6,10 @@ import {DrawerComponent} from "../drawer/drawer.component";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   // @ViewChild('chartContainer', { read: MatDrawer }) drawer!:MatDrawer;
   @Input() drawer!: DrawerComponent;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

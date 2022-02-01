@@ -6,14 +6,9 @@ import {MatDrawer} from "@angular/material/sidenav";
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss']
 })
-export class DrawerComponent implements OnInit {
+export class DrawerComponent {
 
   @ViewChild(MatDrawer) drawer!: MatDrawer;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public toggleDrawer():void {
     this.drawer.toggle();
