@@ -17,7 +17,6 @@ import {AjoutPopupComponent} from './list-music/ajout-popup/ajout-popup.componen
 import {MatListModule} from "@angular/material/list";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
-import {ContactComponent} from './contact/contact.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -48,7 +47,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListMusicsComponent,
     FormulaireComponent,
     AjoutPopupComponent,
-    ContactComponent,
     BarreDeRechercheComponent,
     HeaderComponent,
     DrawerComponent,
