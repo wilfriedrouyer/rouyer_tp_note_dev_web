@@ -37,7 +37,7 @@ export class FormulaireComponent implements OnInit {
       styles: this.musicModel.styles || [],
       artist: this.musicModel.artist,
       duration: this.musicModel.duration,
-      date: new Date(this.musicModel.date!).getFullYear.toString(),
+      date: this.musicModel.date?.substring(0, 4),
       picture: this.musicModel.picture,
     });
     console.log(this.form.value);
@@ -49,7 +49,9 @@ export class FormulaireComponent implements OnInit {
 
   submit(music: Music) { //Formulaire
     music.picture = this.musicModel.picture;
-    music.date = new Date(this.musicModel.date!).toString();
+    const date =  new Date(music.date!).getFullYear().toString();
+    console.log(date);
+    music.date = date;
     this.submitEvent$.emit(music);
   }
 
