@@ -17,6 +17,8 @@ export class AccueilComponent implements OnInit {
 
   random() {
     this.listMusicService.fetchRandom().subscribe(music => {
+      const date = music.date;
+      music.date = date?.substring(0, 4);
       this.music = music;
     });
   }
