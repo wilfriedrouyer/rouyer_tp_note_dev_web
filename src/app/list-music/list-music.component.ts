@@ -39,12 +39,6 @@ export class ListMusicsComponent implements OnInit {
         music.date = date?.substring(0, 4);
       });
     });
-    /*
-    this.musics.forEach(music => {
-      const date = new Date(music.date!);
-      music.date = date.getFullYear().toString();
-    });
-    */
   }
 
   delete(person: Music) {

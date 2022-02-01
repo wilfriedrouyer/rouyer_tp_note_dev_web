@@ -11,6 +11,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class FormulaireComponent implements OnInit {
   form: FormGroup;
+  title: string;
   @Input() musicModel: Music;
   @ViewChild("fileInput") fileInput!: ElementRef;
 
@@ -26,6 +27,7 @@ export class FormulaireComponent implements OnInit {
     this.musicModel = {
       styles: []
     };
+    this.title = "➕ Créer une musique";
   }
 
   ngOnInit() {
@@ -40,7 +42,6 @@ export class FormulaireComponent implements OnInit {
       date: this.musicModel.date?.substring(0, 4),
       picture: this.musicModel.picture,
     });
-    console.log(this.form.value);
   }
 
   cancel() {

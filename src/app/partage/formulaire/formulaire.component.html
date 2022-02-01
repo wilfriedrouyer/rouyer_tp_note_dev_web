@@ -9,11 +9,13 @@
           <mat-label>Titre</mat-label>
           <input formControlName="title" name="title" matInput placeholder="Ex: Highway to Hell" required/>
           <mat-error *ngIf="form.get('title')!.dirty && form.get('title')!.errors?.['required']"><br />Le titre est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('title')!.dirty && form.get('title')!.errors?.['minlength']"><br />Le nom doit avoir au moins 2 caractères </mat-error>
         </mat-form-field>
         <mat-form-field class="name" >
           <mat-label>Artiste</mat-label>
           <input formControlName="artist" matInput placeholder="Ex: AC/DC" name="artist" required/>
           <mat-error *ngIf="form.get('artist')!.dirty && form.get('artist')!.errors?.['required']"><br />Le nom de l'artiste est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('artist')!.dirty && form.get('artist')!.errors?.['minlength']"><br />Le nom doit avoir au moins 2 caractères </mat-error>
         </mat-form-field>
       </p>
 
@@ -27,8 +29,9 @@
       <p>
         <mat-form-field class="name" >
           <mat-label>Année de sortie</mat-label>
-          <input matInput placeholder="date" style="width:100%" name="date" formControlName="date" required />
+          <input matInput placeholder="Ex: 1998" style="width:100%" name="date" formControlName="date" required />
           <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['required']"><br />L'année de sortie est obligatoire</mat-error>
+          <mat-error *ngIf="form.get('date')!.dirty && form.get('date')!.errors?.['minlength']"><br />Le nom doit avoir au moins 2 caractères </mat-error>
         </mat-form-field>
       </p>
 
