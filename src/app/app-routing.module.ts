@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AccueilComponent} from "./accueil/accueil.component";
-import {ListMusicsComponent} from "./list-personnel/list-music.component";
+import {ListMusicsComponent} from "./list-music/list-music.component";
 import {ContactComponent} from "./contact/contact.component";
-import {EditionComponent} from "./list-personnel/edition/edition.component";
+import {EditionComponent} from "./list-music/edition/edition.component";
 import {MusicDetailResolverResolver} from "./partage/music-detail-resolver/music-detail-resolver.resolver";
 
 const routes: Routes = [
