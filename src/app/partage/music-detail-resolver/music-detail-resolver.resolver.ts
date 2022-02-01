@@ -6,7 +6,7 @@ import {ListMusicService, Music} from "../service/list-music.service";
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeDetailResolverResolver implements Resolve<Music> {
+export class MusicDetailResolverResolver implements Resolve<Music> {
 
   constructor(private readonly musicService: ListMusicService) {
   }

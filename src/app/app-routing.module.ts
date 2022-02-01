@@ -4,13 +4,13 @@ import {AccueilComponent} from "./accueil/accueil.component";
 import {ListMusicsComponent} from "./list-personnel/list-music.component";
 import {ContactComponent} from "./contact/contact.component";
 import {EditionComponent} from "./list-personnel/edition/edition.component";
-import {EmployeDetailResolverResolver} from "./partage/employe-detail-resolver/employe-detail-resolver.resolver";
+import {MusicDetailResolverResolver} from "./partage/music-detail-resolver/music-detail-resolver.resolver";
 
 const routes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   {path:'accueil', component: AccueilComponent},
   {path:'listMusics', component: ListMusicsComponent},
-  { path: 'edit/:id', component: EditionComponent, resolve: { employe: EmployeDetailResolverResolver } },
+  { path: 'edit/:id', component: EditionComponent, resolve: { employe: MusicDetailResolverResolver } },
   {path:'contact', component: ContactComponent}
 ];
 
