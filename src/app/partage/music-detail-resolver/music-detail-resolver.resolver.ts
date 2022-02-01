@@ -12,9 +12,9 @@ export class MusicDetailResolverResolver implements Resolve<Music> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Music> {
-    const employeId: string | null = route.paramMap.get('id');
-    if(employeId != null){
-      return this.musicService.fetchOne(employeId);
+    const musicId: string | null = route.paramMap.get('id');
+    if(musicId != null){
+      return this.musicService.fetchOne(musicId);
     }
     else
       return new Observable<Music>();

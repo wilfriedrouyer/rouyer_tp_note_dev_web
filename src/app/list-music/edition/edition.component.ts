@@ -31,12 +31,12 @@ export class EditionComponent implements OnInit {
 
   submit(music: any) {
     this.listMusicService.update(music).subscribe(() => {
-      this.router.navigate(['/listPersonnel']).then(r => null);
+      this.router.navigate(['/listMusics']).then(r => null);
     });
   }
 
   cancel() {
-    this.router.navigate(['/listPersonnel']).then(r => null);
+    this.router.navigate(['/listMusics']).then(r => null);
   }
 
 }

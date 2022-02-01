@@ -70,10 +70,10 @@ export class ListMusicService {
   }
 
   fetchOne(id: string): Observable<Music> {
-    return this.http.get<Music>(this.urlServer.uneMusique.replace(':id', id));
+    return this.http.get<Music>(this.urlServer.findById.replace(':id', id));
   }
 
   update(musique: Music): Observable<Music> {
-    return this.http.put<Music>(this.urlServer.uneMusique.replace(':id', musique.id), musique);
+    return this.http.put<Music>(this.urlServer.findById.replace(':id', musique.id), musique);
   }
 }

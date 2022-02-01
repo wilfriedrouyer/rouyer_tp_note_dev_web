@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   {path:'accueil', component: AccueilComponent},
   {path:'listMusics', component: ListMusicsComponent},
-  { path: 'edit/:id', component: EditionComponent, resolve: { employe: MusicDetailResolverResolver } },
+  { path: 'edit/:id', component: EditionComponent, resolve: { music: MusicDetailResolverResolver } },
   {path:'contact', component: ContactComponent}
 ];
 

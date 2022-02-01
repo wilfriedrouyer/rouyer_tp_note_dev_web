@@ -29,7 +29,6 @@ export class FormulaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.form.patchValue({
       id: this.musicModel.id,
       title: this.musicModel.title,
@@ -38,18 +37,20 @@ export class FormulaireComponent implements OnInit {
       styles: this.musicModel.styles || [],
       artist: this.musicModel.artist,
       duration: this.musicModel.duration,
-      date: this.musicModel.date,
+      date: new Date(this.musicModel.date!).getFullYear.toString(),
       picture: this.musicModel.picture,
     });
+    console.log(this.form.value);
   }
 
   cancel() {
     this.cancelEvent$.emit();
   }
 
-  submit(employe: Music) { //Formulaire
-    employe.picture = this.musicModel.picture;
-    this.submitEvent$.emit(employe);
+  submit(music: Music) { //Formulaire
+    music.picture = this.musicModel.picture;
+    music.date = new Date(this.musicModel.date!).toString();
+    this.submitEvent$.emit(music);
   }
 
 
@@ -91,6 +92,7 @@ export class FormulaireComponent implements OnInit {
       title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       description: new FormControl(''),
       album: new FormControl('', Validators.required),
+      artist: new FormControl(''),
       styles: new FormControl(''),
       duration: new FormControl(''),
       date: new FormControl(''),
