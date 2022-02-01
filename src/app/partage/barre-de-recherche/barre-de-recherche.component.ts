@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {ListPersonnelService} from "../service/list-personnel.service";
+import {ListMusicService} from "../service/list-music.service";
 import {catchError, debounceTime, distinctUntilChanged, Observable, of, Subscription, switchMap, take} from "rxjs";
 
 @Component({
@@ -21,7 +21,7 @@ export class BarreDeRechercheComponent implements OnInit, OnDestroy {
   @Output() readonly typing = new EventEmitter<any[]>();
 
   constructor(
-    private readonly listPersonneService: ListPersonnelService) {
+    private readonly listMusicService: ListMusicService) {
   }
 
   ngOnInit(): void {
@@ -30,11 +30,11 @@ export class BarreDeRechercheComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       switchMap(value => {
         if (value) {
-          return this.listPersonneService.search(value).pipe(
+          return this.listMusicService.search(value).pipe(
             catchError(() => of([]))
           );
         } else {
-          return this.listPersonneService.fetch();
+          return this.listMusicService.fetch();
         }
       })
     );
@@ -43,9 +43,9 @@ export class BarreDeRechercheComponent implements OnInit, OnDestroy {
       next: personnel => this.typing.emit(personnel)
     });
 
-    this.listPersonneServiceSubscription = this.listPersonneService.employees$.subscribe({
+    this.listPersonneServiceSubscription = this.listMusicService.employees$.subscribe({
       next: () => {
-        this.listPersonneService.fetch().pipe(take(1)).subscribe(personnel => this.personnel = personnel);
+        this.listMusicService.fetch().pipe(take(1)).subscribe(personnel => this.personnel = personnel);
         this.barreDeRecherche.setValue('');
       }
     });

@@ -2,65 +2,75 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {mergeMap} from "rxjs";
 import {AjoutPopupComponent} from "./ajout-popup/ajout-popup.component";
-import {ListPersonnelService, Person} from "../partage/service/list-personnel.service";
+import {ListMusicService, Music} from "../partage/service/list-music.service";
 
 
 @Component({
   selector: 'app-service',
-  templateUrl: './list-personnel.component.html',
-  styleUrls: ['./list-personnel.component.scss']
+  templateUrl: './list-music.component.html',
+  styleUrls: ['./list-music.component.scss']
 })
-export class ListPersonnelComponent implements OnInit {
+export class ListMusicsComponent implements OnInit {
 
   private addDialog: MatDialogRef<AjoutPopupComponent> | any;
-  personnel: Person[] = [];
+  musics : Music[] = [];
   dialogStatus = 'inactive';
   view = 'card';
 
   constructor(
-    private readonly listPersonnelService: ListPersonnelService,
+    private readonly listMusicService: ListMusicService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef) {
 
   }
 
-  personnelFiltered(personnel: any[]) {
-    this.personnel = personnel;
+  personnelFiltered(musics: any[]) {
+    this.musics = musics;
   }
 
   /**
    * OnInit implementation
    */
   ngOnInit() {
-    this.listPersonnelService.fetch().subscribe(personnel => {
-      this.personnel = personnel || [];
+    this.listMusicService.fetch().subscribe(musics => {
+      this.musics = musics || [];
+      this.musics.forEach(music => {
+        const date = music.date;
+        music.date = date?.substring(0, 4);
+      });
     });
+    /*
+    this.musics.forEach(music => {
+      const date = new Date(music.date!);
+      music.date = date.getFullYear().toString();
+    });
+    */
   }
 
-  delete(person: Person) {
-    this.listPersonnelService.delete(person.id!).subscribe(personnel => {
-      this.personnel = personnel;
-      this.listPersonnelService.updatedEmployeeList(person.id!);
+  delete(person: Music) {
+    this.listMusicService.delete(person.id!).subscribe(musics => {
+      this.musics = musics;
+      this.listMusicService.updatedEmployeeList(person.id!);
       this.cdr.markForCheck();
     });
   }
 
-  add(person: Person) {
-    this.listPersonnelService
+  add(person: Music) {
+    this.listMusicService
       .create(person)
-      .pipe(mergeMap(() => this.listPersonnelService.fetch()))
-      .subscribe(personnel => {
-        this.personnel = personnel;
+      .pipe(mergeMap(() => this.listMusicService.fetch()))
+      .subscribe(musics => {
+        this.musics = musics;
         this.hideDialog();
       });
   }
 
-  update(person: Person) {
-    this.listPersonnelService
+  update(person: Music) {
+    this.listMusicService
       .update(person)
-      .pipe(mergeMap(() => this.listPersonnelService.fetch()))
-      .subscribe(personnel => {
-        this.personnel = personnel;
+      .pipe(mergeMap(() => this.listMusicService.fetch()))
+      .subscribe(musics => {
+        this.musics = musics;
         this.hideDialog();
       });
   }

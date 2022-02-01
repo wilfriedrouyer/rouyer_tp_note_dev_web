@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphComponent } from './graph.component';
+import { ListPersonnelComponent } from './list-music.component';
 
-describe('GraphComponent', () => {
-  let component: GraphComponent;
-  let fixture: ComponentFixture<GraphComponent>;
+describe('ListPersonnelComponent', () => {
+  let component: ListPersonnelComponent;
+  let fixture: ComponentFixture<ListPersonnelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GraphComponent ]
+      declarations: [ ListPersonnelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphComponent);
+    fixture = TestBed.createComponent(ListPersonnelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
