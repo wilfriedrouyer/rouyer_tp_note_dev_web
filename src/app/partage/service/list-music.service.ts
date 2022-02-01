@@ -62,7 +62,7 @@ export class ListMusicService {
   }
 
   delete(id: string): Observable<any> {
-    return this.http.delete(this.urlServer.findyById.replace(':id', id));
+    return this.http.delete(this.urlServer.findById.replace(':id', id));
   }
 
   create(musique: Music): Observable<Music> {
